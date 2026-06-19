@@ -1,0 +1,25 @@
+[project]
+name = "lightweight-db-engine"
+version = "0.1.0"
+description = "轻量级数据库引擎：支持SQL查询、列式存储、自然语言接口"
+authors = [{name = "Your Name", email = "you@example.com"}]
+dependencies = [
+    "faker>=25.0.0",
+    "groq>=0.9.0",
+    "python-dotenv>=1.0.0",
+]
+requires-python = ">=3.10"
+
+[project.scripts]
+db-cli = "src.query_engine.cli:main"
+generate-data = "data.generate_test_data:main"
+hash-bench = "experiments.hash_index_benchmark:main"
+col-bench = "src.columnar_storage.benchmark:main"
+nl-test = "src.natural_language.test_cases:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src", "data", "experiments"]
